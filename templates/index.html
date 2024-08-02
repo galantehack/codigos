@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios Flask</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/style.css') }}">
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Servicios DesRed</h1>
+
+        <!-- Formulario para acortar URL -->
+        <h2>Acortador de URL</h2>
+        <form action="/shorten" method="post">
+            <label for="long-url">URL larga:</label>
+            <input type="text" id="long-url" name="long-url" required placeholder="Introduce la URL larga aquí">
+            <button type="submit">Acortar</button>
+        </form>
+        {% if short_url %}
+            <div class="result">
+                <p>URL corta: <a href="{{ short_url }}" target="_blank">{{ short_url }}</a></p>
+            </div>
+        {% endif %}
+
+        <!-- Formulario para generar código QR -->
+        <h2>Generador de Código QR</h2>
+        <form action="/qrcode" method="post">
+            <label for="qr-data">Datos:</label>
+            <input type="text" id="qr-data" name="qr-data" required placeholder="Introduce los datos aquí">
+            <button type="submit">Generar QR</button>
+        </form>
+
+        <!-- Formulario para generar código de barra -->
+        <h2>Generador de Código de Barra</h2>
+        <form action="/barcode" method="post">
+            <label for="barcode-data">Datos:</label>
+            <input type="text" id="barcode-data" name="barcode-data" required placeholder="Introduce 12 dígitos aquí">
+            <button type="submit">Generar Código de Barra</button>
+        </form>
+    </div>
+</body>
+</html>
